@@ -20,8 +20,8 @@ function ZAIRY(ZR::Float64,ZI::Float64,ID::Int32,KODE::Int32,AIR::Float64,AII::F
     CONER::Float64 = zero(Float64)
     CSQI::Float64 = zero(Float64)
     CSQR::Float64 = zero(Float64)
-    const CYI = _ZAIRY_CYI
-    const CYR = _ZAIRY_CYR
+    CYI = _ZAIRY_CYI
+    CYR = _ZAIRY_CYR
     D1::Float64 = zero(Float64)
     D2::Float64 = zero(Float64)
     DIG::Float64 = zero(Float64)
