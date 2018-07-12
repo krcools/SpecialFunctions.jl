@@ -46,7 +46,7 @@ function unravel_data(e::Expr)
     e
 end
 
-type FortranRoutine
+mutable struct FortranRoutine
     filename::ASCIIString
     ast::Expr
     name::Symbol

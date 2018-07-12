@@ -59,7 +59,7 @@ for jy in ("j","y"), nu in (0,1)
 end
 
 
-type AmosException <: Exception
+mutable struct AmosException <: Exception
     info::Int32
 end
 
