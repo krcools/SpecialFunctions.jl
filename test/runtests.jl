@@ -1,5 +1,5 @@
-include("../src/SpecialFunctions.jl")
-import SpecialFunctions
+include("../src/Amos.jl")
+import Amos
 using Base.Test
 
 # override Main
