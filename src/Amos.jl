@@ -1,12 +1,12 @@
-module SpecialFunctions
+module Amos
 
-export  
+export
     airy,
     airyai,
     airyaiprime,
     airybi,
     airybiprime,
-    airyprime,    
+    airyprime,
     airyx,
     besselh,
     besseli,
@@ -58,7 +58,7 @@ for jy in ("j","y"), nu in (0,1)
     end
 end
 
-        
+
 type AmosException <: Exception
     info::Int32
 end
@@ -258,7 +258,7 @@ end
 
 function besselyx(nu::Float64, z::Complex128)
     if nu < 0
-        return _bessely(-nu,z,int32(2))*cospi(nu) - _besselj(-nu,z,int32(2))*sinpi(nu) 
+        return _bessely(-nu,z,int32(2))*cospi(nu) - _besselj(-nu,z,int32(2))*sinpi(nu)
     else
         return _bessely(nu,z,int32(2))
     end
