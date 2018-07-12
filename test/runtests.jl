@@ -3,9 +3,10 @@ import Amos
 using Base.Test
 
 # override Main
-for f in names(SpecialFunctions)
+for f in names(Amos)
+    f == :Amos && continue
     if isdefined(Main,f)
-        @eval global const $f = SpecialFunctions.$f
+        @eval global const $f = Amos.$f
     end
 end
 

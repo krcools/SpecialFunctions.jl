@@ -93,12 +93,12 @@ function ZUNK1(ZR::Float64,ZI::Float64,FNU::Float64,KODE::Int32,MR::Int32,N::Int
     ZETA2R = _ZUNK1_ZETA2R
     ZRI::Float64 = zero(Float64)
     ZRR::Float64 = zero(Float64)
-    begin 
+    begin
         ZEROR = 0.0
         ZEROI = 0.0
         CONER = 1.0
     end
-    begin 
+    begin
         PI = 3.141592653589793
     end
     KDFLG = int32(1)
@@ -127,7 +127,7 @@ function ZUNK1(ZR::Float64,ZI::Float64,FNU::Float64,KODE::Int32,MR::Int32,N::Int
         J = int32(3) - J
         FN = FNU + DBLE(FLOAT(I - int32(1)))
         INIT[J] = int32(0)
-        (INIT[J],PHIR[J],PHII[J],ZETA1R[J],ZETA1I[J],ZETA2R[J],ZETA2I[J],SUMR[J],SUMI[J]) = ZUNIK(ZRR,ZRI,FN,int32(2),int32(0),TOL,INIT[J],PHIR[J],PHII[J],ZETA1R[J],ZETA1I[J],ZETA2R[J],ZETA2I[J],SUMR[J],SUMI[J],slice(CWRKR,int32(1):16,int(J)),slice(CWRKI,int32(1):16,int(J)))
+        (INIT[J],PHIR[J],PHII[J],ZETA1R[J],ZETA1I[J],ZETA2R[J],ZETA2I[J],SUMR[J],SUMI[J]) = ZUNIK(ZRR,ZRI,FN,int32(2),int32(0),TOL,INIT[J],PHIR[J],PHII[J],ZETA1R[J],ZETA1I[J],ZETA2R[J],ZETA2I[J],SUMR[J],SUMI[J],view(CWRKR,int32(1):16,int(J)),view(CWRKI,int32(1):16,int(J)))
         if KODE == int32(1)
             @goto line20
         end
@@ -234,7 +234,7 @@ function ZUNK1(ZR::Float64,ZI::Float64,FNU::Float64,KODE::Int32,MR::Int32,N::Int
         IPARD = int32(0)
     end
     INITD = int32(0)
-    (INITD,PHIDR,PHIDI,ZET1DR,ZET1DI,ZET2DR,ZET2DI,SUMDR,SUMDI) = ZUNIK(ZRR,ZRI,FN,int32(2),IPARD,TOL,INITD,PHIDR,PHIDI,ZET1DR,ZET1DI,ZET2DR,ZET2DI,SUMDR,SUMDI,slice(CWRKR,int32(1):16,int(int32(3))),slice(CWRKI,int32(1):16,int(int32(3))))
+    (INITD,PHIDR,PHIDI,ZET1DR,ZET1DI,ZET2DR,ZET2DI,SUMDR,SUMDI) = ZUNIK(ZRR,ZRI,FN,int32(2),IPARD,TOL,INITD,PHIDR,PHIDI,ZET1DR,ZET1DI,ZET2DR,ZET2DI,SUMDR,SUMDI,view(CWRKR,int32(1):16,int(int32(3))),view(CWRKI,int32(1):16,int(int32(3))))
     if KODE == int32(1)
         @goto line80
     end
@@ -372,7 +372,7 @@ function ZUNK1(ZR::Float64,ZI::Float64,FNU::Float64,KODE::Int32,MR::Int32,N::Int
         end
         INITD = int32(0)
         @label line180
-        (INITD,PHIDR,PHIDI,ZET1DR,ZET1DI,ZET2DR,ZET2DI,SUMDR,SUMDI) = ZUNIK(ZRR,ZRI,FN,int32(1),int32(0),TOL,INITD,PHIDR,PHIDI,ZET1DR,ZET1DI,ZET2DR,ZET2DI,SUMDR,SUMDI,slice(CWRKR,int32(1):16,int(M)),slice(CWRKI,int32(1):16,int(M)))
+        (INITD,PHIDR,PHIDI,ZET1DR,ZET1DI,ZET2DR,ZET2DI,SUMDR,SUMDI) = ZUNIK(ZRR,ZRI,FN,int32(1),int32(0),TOL,INITD,PHIDR,PHIDI,ZET1DR,ZET1DI,ZET2DR,ZET2DI,SUMDR,SUMDI,view(CWRKR,int32(1):16,int(M)),view(CWRKI,int32(1):16,int(M)))
         if KODE == int32(1)
             @goto line200
         end

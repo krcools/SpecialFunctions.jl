@@ -26,7 +26,7 @@ filter_expr(f::Function, e::Expr) = Expr(e.head, [filter_expr(f,x) for x in filt
 filter_expr(f::Function, x) = x
 
 function unravel_data(e::Expr)
-    if e.head == :macrocall && e.args[1] == symbol("@DATA")
+    if e.head == :macrocall && e.args[1] == Symbol("@DATA")
         vars = {}
         vals = {}
         @assert e.args[2].head == :tuple
@@ -84,7 +84,7 @@ function main()
         # D1MACH(i) --> D1MACHi
         ast = map_expr(
                 e->(!(iscall(e,:D1MACH) || iscall(e,:I1MACH)) ? e :
-                    symbol(string(e.args[1], e.args[2]::Int))),
+                    Symbol(string(e.args[1], e.args[2]::Int))),
                 ast)
 
         # X(i) = block Y end --> X[i] = Y
@@ -111,11 +111,11 @@ function main()
         end
 
         vartypes = Dict{Symbol,Symbol}()
-        for (s,t) in ((symbol("@DOUBLE_PRECISION"), :Float64),
-                      (symbol("@INTEGER"), :Int32))
+        for (s,t) in ((Symbol("@DOUBLE_PRECISION"), :Float64),
+                      (Symbol("@INTEGER"), :Int32))
             merge!(vartypes, [v => t for v in extract_macro(s)])
         end
-        vardims = [e.args[1] => e.args[2:end] for e in extract_macro(symbol("@DIMENSION"))]
+        vardims = [e.args[1] => e.args[2:end] for e in extract_macro(Symbol("@DIMENSION"))]
 
         # add types to signature
         ts = [get(vartypes,v,:Int32) for v in args]
@@ -188,7 +188,7 @@ function main()
             t = routine.types[v]
             if haskey(routine.dims,v)
                 d = routine.dims[v]
-                gv = symbol("_$(name)_$v")
+                gv = Symbol("_$(name)_$v")
                 push!(routine.globals, :(const $gv = Array($t,$(d...))))
                 e = :(const $v = $gv)
             else
@@ -242,7 +242,7 @@ function main()
                     Expr(:(=), Expr(:tuple, e.args[2:end][ioa]...), e)),
                 routine2.ast.args[2])
 
-            # hack to replace C[I,J] --> slice(X,I:end,J) in subroutine calls
+            # hack to replace C[I,J] --> view(X,I:end,J) in subroutine calls
             routine2.ast = map_expr(
                 function (e)
                     iscall(e,name) || return e
@@ -250,7 +250,7 @@ function main()
                     for (i,a) in enumerate(e.args[2:end])
                         if isexpr(a,:ref) && routine.isdimargs[i]
                             @assert length(a.args) == 3
-                            a = Expr(:call, :slice,
+                            a = Expr(:call, :view,
                                      a.args[1],
                                      Expr(:(:), a.args[2], routine2.dims[a.args[1]][1]),
                                      Expr(:call, :int, a.args[3]))
@@ -278,7 +278,7 @@ function main()
 
         # mangle function return variable
         if !routine.issubroutine
-            namevar = symbol("__$(name)__")
+            namevar = Symbol("__$(name)__")
             routine.ast.args[2] = map_nonexpr(
                 s->(s != name ? s : namevar),
                 routine.ast.args[2])
