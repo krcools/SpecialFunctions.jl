@@ -46,8 +46,8 @@ function ZSERI(ZR::Float64,ZI::Float64,FNU::Float64,KODE::Int32,N::Int32,YR::Abs
     SS::Float64 = zero(Float64)
     STI::Float64 = zero(Float64)
     STR::Float64 = zero(Float64)
-    const WI = _ZSERI_WI
-    const WR = _ZSERI_WR
+    WI = _ZSERI_WI
+    WR = _ZSERI_WR
     ZEROI::Float64 = zero(Float64)
     ZEROR::Float64 = zero(Float64)
     begin 
