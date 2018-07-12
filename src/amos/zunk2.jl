@@ -1,22 +1,22 @@
-const _ZUNK2_ZETA2R = Array(Float64,2)
-const _ZUNK2_ZETA2I = Array(Float64,2)
-const _ZUNK2_ZETA1R = Array(Float64,2)
-const _ZUNK2_ZETA1I = Array(Float64,2)
-const _ZUNK2_PHIR = Array(Float64,2)
-const _ZUNK2_PHII = Array(Float64,2)
-const _ZUNK2_CYR = Array(Float64,2)
-const _ZUNK2_CYI = Array(Float64,2)
-const _ZUNK2_CSSR = Array(Float64,3)
-const _ZUNK2_CSRR = Array(Float64,3)
-const _ZUNK2_CIPR = Array(Float64,4)
-const _ZUNK2_CIPI = Array(Float64,4)
-const _ZUNK2_BSUMR = Array(Float64,2)
-const _ZUNK2_BSUMI = Array(Float64,2)
-const _ZUNK2_BRY = Array(Float64,3)
-const _ZUNK2_ASUMR = Array(Float64,2)
-const _ZUNK2_ASUMI = Array(Float64,2)
-const _ZUNK2_ARGR = Array(Float64,2)
-const _ZUNK2_ARGI = Array(Float64,2)
+const _ZUNK2_ZETA2R = Array{Float64}(2)
+const _ZUNK2_ZETA2I = Array{Float64}(2)
+const _ZUNK2_ZETA1R = Array{Float64}(2)
+const _ZUNK2_ZETA1I = Array{Float64}(2)
+const _ZUNK2_PHIR = Array{Float64}(2)
+const _ZUNK2_PHII = Array{Float64}(2)
+const _ZUNK2_CYR = Array{Float64}(2)
+const _ZUNK2_CYI = Array{Float64}(2)
+const _ZUNK2_CSSR = Array{Float64}(3)
+const _ZUNK2_CSRR = Array{Float64}(3)
+const _ZUNK2_CIPR = Array{Float64}(4)
+const _ZUNK2_CIPI = Array{Float64}(4)
+const _ZUNK2_BSUMR = Array{Float64}(2)
+const _ZUNK2_BSUMI = Array{Float64}(2)
+const _ZUNK2_BRY =Array{Float64}(3)
+const _ZUNK2_ASUMR = Array{Float64}(2)
+const _ZUNK2_ASUMI = Array{Float64}(2)
+const _ZUNK2_ARGR = Array{Float64}(2)
+const _ZUNK2_ARGI =Array{Float64}(2)
 function ZUNK2(ZR::Float64,ZI::Float64,FNU::Float64,KODE::Int32,MR::Int32,N::Int32,YR::AbstractArray{Float64},YI::AbstractArray{Float64},NZ::Int32,TOL::Float64,ELIM::Float64,ALIM::Float64)
     AARG::Float64 = zero(Float64)
     AIC::Float64 = zero(Float64)
@@ -127,7 +127,7 @@ function ZUNK2(ZR::Float64,ZI::Float64,FNU::Float64,KODE::Int32,MR::Int32,N::Int
     ZNR::Float64 = zero(Float64)
     ZRI::Float64 = zero(Float64)
     ZRR::Float64 = zero(Float64)
-    begin 
+    begin
         ZEROR = 0.0
         ZEROI = 0.0
         CONER = 1.0
@@ -136,12 +136,12 @@ function ZUNK2(ZR::Float64,ZI::Float64,FNU::Float64,KODE::Int32,MR::Int32,N::Int
         CR2R = -0.5
         CR2I = -0.8660254037844386
     end
-    begin 
+    begin
         HPI = 1.5707963267948966
         PI = 3.141592653589793
         AIC = 1.2655121234846454
     end
-    begin 
+    begin
         CIPR[int32(1)] = 1.0
         CIPI[int32(1)] = 0.0
         CIPR[int32(2)] = 0.0
