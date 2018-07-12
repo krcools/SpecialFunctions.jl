@@ -8,7 +8,7 @@ function ZACON(ZR::Float64,ZI::Float64,FNU::Float64,KODE::Int32,MR::Int32,N::Int
     AS2::Float64 = zero(Float64)
     ASCLE::Float64 = zero(Float64)
     AZN::Float64 = zero(Float64)
-    const BRY = _ZACON_BRY
+    BRY = _ZACON_BRY
     BSCLE::Float64 = zero(Float64)
     C1I::Float64 = zero(Float64)
     C1M::Float64 = zero(Float64)
@@ -26,10 +26,10 @@ function ZACON(ZR::Float64,ZI::Float64,FNU::Float64,KODE::Int32,MR::Int32,N::Int
     CSPNI::Float64 = zero(Float64)
     CSPNR::Float64 = zero(Float64)
     CSR::Float64 = zero(Float64)
-    const CSRR = _ZACON_CSRR
-    const CSSR = _ZACON_CSSR
-    const CYI = _ZACON_CYI
-    const CYR = _ZACON_CYR
+    CSRR = _ZACON_CSRR
+    CSSR = _ZACON_CSSR
+    CYI = _ZACON_CYI
+    CYR = _ZACON_CYR
     FMR::Float64 = zero(Float64)
     FN::Float64 = zero(Float64)
     I::Int32 = zero(Int32)
