@@ -54,7 +54,7 @@ for jy in ("j","y"), nu in (0,1)
     @eval begin
         $bjynu(x::Real) = $bjynu(float(x))
         $bjynu(x::Complex) = $(Symbol(string("bessel",jy)))($nu,x)
-        @vectorize_1arg Number $bjynu
+        #@vectorize_1arg Number $bjynu
     end
 end
 
@@ -94,23 +94,23 @@ function airy(k::Int, z::Complex128)
 end
 
 airy(z) = airy(0,z)
-@vectorize_1arg Number airy
+#@vectorize_1arg Number airy
 airyprime(z) = airy(1,z)
-@vectorize_1arg Number airyprime
+#@vectorize_1arg Number airyprime
 airyai(z) = airy(0,z)
-@vectorize_1arg Number airyai
+#@vectorize_1arg Number airyai
 airyaiprime(z) = airy(1,z)
-@vectorize_1arg Number airyaiprime
+#@vectorize_1arg Number airyaiprime
 airybi(z) = airy(2,z)
-@vectorize_1arg Number airybi
+#@vectorize_1arg Number airybi
 airybiprime(z) = airy(3,z)
-@vectorize_1arg Number airybiprime
+#@vectorize_1arg Number airybiprime
 
 airy(k::Number, x::AbstractFloat) = oftype(x, real(airy(k, complex(x))))
 airy(k::Number, x::Real) = airy(k, float(x))
 airy(k::Number, z::Complex64) = complex64(airy(k, complex128(z)))
 airy(k::Number, z::Complex) = airy(convert(Int,k), complex128(z))
-@vectorize_2arg Number airy
+#@vectorize_2arg Number airy
 
 function airyx(k::Int, z::Complex128)
     id = int32(k==1 || k==3)
@@ -124,13 +124,13 @@ function airyx(k::Int, z::Complex128)
 end
 
 airyx(z) = airyx(0,z)
-@vectorize_1arg Number airyx
+#@vectorize_1arg Number airyx
 
 airyx(k::Number, x::AbstractFloat) = oftype(x, real(airyx(k, complex(x))))
 airyx(k::Number, x::Real) = airyx(k, float(x))
 airyx(k::Number, z::Complex64) = complex64(airyx(k, complex128(z)))
 airyx(k::Number, z::Complex) = airyx(convert(Int,k), complex128(z))
-@vectorize_2arg Number airyx
+#@vectorize_2arg Number airyx
 
 const cy1 = [0.]
 const cy2 = [0.]
@@ -268,23 +268,23 @@ besselh(nu, z) = besselh(nu, 1, z)
 besselh(nu::Real, k::Integer, z::Complex64) = complex64(besselh(float64(nu), k, complex128(z)))
 besselh(nu::Real, k::Integer, z::Complex) = besselh(float64(nu), k, complex128(z))
 besselh(nu::Real, k::Integer, x::Real) = besselh(float64(nu), k, complex128(x))
-@vectorize_2arg Number besselh
+#@vectorize_2arg Number besselh
 
 hankelh1(nu, z) = besselh(nu, 1, z)
-@vectorize_2arg Number hankelh1
+#@vectorize_2arg Number hankelh1
 
 hankelh2(nu, z) = besselh(nu, 2, z)
-@vectorize_2arg Number hankelh2
+#@vectorize_2arg Number hankelh2
 
 besselhx(nu::Real, k::Integer, z::Complex64) = complex64(besselhx(float64(nu), k, complex128(z)))
 besselhx(nu::Real, k::Integer, z::Complex) = besselhx(float64(nu), k, complex128(z))
 besselhx(nu::Real, k::Integer, x::Real) = besselhx(float64(nu), k, complex128(x))
 
 hankelh1x(nu, z) = besselhx(nu, 1, z)
-@vectorize_2arg Number hankelh1x
+#@vectorize_2arg Number hankelh1x
 
 hankelh2x(nu, z) = besselhx(nu, 2, z)
-@vectorize_2arg Number hankelh2x
+#@vectorize_2arg Number hankelh2x
 
 function besseli(nu::Real, x::AbstractFloat)
     if x < 0 && !isinteger(nu)
@@ -373,7 +373,7 @@ for f in ("i", "ix", "j", "jx", "k", "kx", "y", "yx")
         $bfn(nu::Real, z::Complex64) = complex64($bfn(float64(nu), complex128(z)))
         $bfn(nu::Real, z::Complex) = $bfn(float64(nu), complex128(z))
         $bfn(nu::Real, x::Integer) = $bfn(nu, float64(x))
-        @vectorize_2arg Number $bfn
+        #@vectorize_2arg Number $bfn
     end
 end
 
